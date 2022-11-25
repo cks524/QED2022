@@ -1,4 +1,4 @@
-# QED2022
+# QED 2022 Computer Science
 This is for my QED project in 2022.
 
 In this project, the n-queens puzzle solutions and the corresponding 1x2 tiling arrangements
