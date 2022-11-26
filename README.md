@@ -1,5 +1,5 @@
-# QED 2022 Computer Science
-This is for my QED project in 2022.
+# Domino Tiling an N-Queens Chessboard
+## QED 2022 Computer Science
 
 In this project, the n-queens puzzle solutions and the corresponding 1x2 tiling arrangements
 are observed and calculation of the number of domino tiling arrangements of solutions to
