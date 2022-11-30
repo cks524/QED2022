@@ -1,10 +1,15 @@
-//this is the combination of the two problems
+//this is the combination of the two problems, with the data being output in a csv file
+//it outputs the number of solutions and the number of those which are tileable
+//in addition, for every possible number of white and black queens,
+//the data shows the white/black squares distribution and the number of solutions to n-queens that satisfy this property
+//lastly, it outputs the number of tilings for each solution, and the frequency of number of tilings
+//it's not feasible to do this for n>=12 because one n-queens solution by itself already has a very large number of tilings
 #include <bits/stdc++.h>
 using namespace std;
 
-int n, grid[27][27], tile_count, white, black;
-
-unsigned long long counter, notiling_counter, tiling_num;
+int n, grid[27][27], counter, notiling_counter, tiling_num, tile_count, white, black;
+map<int, unsigned long long> bw;
+map<int, unsigned long long> tilefreq;
 
 void initGrid()
 {
@@ -112,6 +117,9 @@ void placeQueens(int pos)
             notiling_counter++;
             //printGrid();
         }
+        //add to amount of white queens and frequency of amount of tilings
+        bw[white]++;
+        tilefreq[tiling_num]++;
         //reset number of tiling in the case to 0
         tiling_num = 0;
         return;
@@ -174,6 +182,24 @@ void placeQueens(int pos)
 int main()
 {
     cin >> n;
+    counter = 0;
     placeQueens(0);
-    cout << n << ": " << counter << ", " << counter - notiling_counter << "\n";
+    //puts the data into a csv file, which can be opened with excel
+    ofstream outfile;
+    //the name of the csv is going to be nqueens.csv, where n is the number
+    string filename = to_string(n) + "queens.csv";
+    outfile.open(filename);
+    outfile << "\n";
+    outfile << "N, #Solutions, Can be Tiled\n";
+    outfile << n << "," << counter << "," << counter - notiling_counter << "\n\n";
+    outfile << "White Queens, Black Queens, White Squares, Black Squares, Arrangements\n";
+    for (auto x : bw)
+    {
+        outfile << x.first << ", " << n - x.first << ", " << (n * n + 1) / 2 - x.first << ", " << (n * n) / 2 - n + x.first << ", " << x.second << "\n";
+    }
+    outfile << "\nTilings, Frequency\n";
+    for (auto x : tilefreq)
+    {
+        outfile << x.first << ", " << x.second << " \n";
+    }
 }
