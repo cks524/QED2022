@@ -3,7 +3,7 @@
 
 In this project, the n-queens puzzle solutions and the corresponding 1x2 tiling arrangements
 are observed and calculation of the number of domino tiling arrangements of solutions to
-the n-queens puzzle are performed. Based on results presented for n ≤ 20, it is hypothesized
+the n-queens puzzle are performed. Based on results presented for n ≤ 15, it is hypothesized
 that as long as the necessary condition of having equal white and black squares left in a
 given n-queen solution, the remaining chessboard will be tileable. This is not always true
 for other mutilated chessboards, as the mutilations could split the board in disjoint groups.
